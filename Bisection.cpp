@@ -1,49 +1,57 @@
-#include<bits/stdc++.h>
+#include <iostream>
+#include <iomanip>
+#include <cmath>
 using namespace std;
+
 #define EPSILON 0.001
 
-double func(double x)
-{
-	return x*x*x - x - 11;
+// Function definition
+double func(double x) {
+    return x * x * x - x - 11;
 }
 
-void bisection(double a, double b)
-{
-	if (func(a) * func(b) >= 0)
-	{
-		cout << "You have not assumed right a and b\n";
-		return;
-	}
+// Bisection Method with x1, x2, x3 format
+void bisection(double x1, double x2) {
+    if (func(x1) * func(x2) >= 0) {
+        cout << "You have not assumed correct x1 and x2.\n";
+        return;
+    }
 
-	double c;
-	int iter = 1;
-	cout << "Iter       a            b           f(a)        f(b)          c           f(c)" << endl;
-	while ((b - a) >= EPSILON)
-	{
-		c = (a + b) / 2;
+    double x3;
+    int n = 1;
 
-		cout << iter << "       "<< fixed << setprecision(6) << a << "    "<< b << "    "<< func(a) << "    "<< func(b) << "    "<< c << "    "<< func(c) << endl;
+    // Table Header
+    cout << fixed << setprecision(4);
+    cout << "Iter\t\tx1\t\tx2\t\tx3" << endl;
 
-		if (func(c) == 0.0)
-			break;
+    while ((fabs(x2 - x1) >= EPSILON)) {
+        x3 = (x1 + x2) / 2;
 
-		else if (func(c) * func(a) < 0)
-			b = c;
-		else
-			a = c;
+        cout << n << "\t\t" << x1 << "\t\t"<< x2 << "\t\t"<< x3 << endl;
 
-		iter++;
-	}
-	cout << "The value of the root is: " << fixed << setprecision(6) << c << endl;
+        // Check if x3 is root
+        if (func(x3) == 0.0)
+            break;
+
+        // Narrow down the interval
+        if (func(x1) * func(x3) < 0)
+            x2 = x3;
+        else
+            x1 = x3;
+
+        n++;
+    }
+
+    cout << "\nRoot of the equation = " << x3 << endl;
+    cout << "Total iterations = " << n << endl;
 }
 
-int main()
-{
-	double a, b;
-	cout << "Enter the value of a: ";
-	cin >> a;
-	cout << "Enter the value of b: ";
-	cin >> b;
-	bisection(a, b);
-	return 0;
+int main() {
+    double x1, x2;
+    cout << "Enter initial guesses x1 and x2: ";
+    cin >> x1 >> x2;
+
+    bisection(x1, x2);
+    return 0;
 }
+
