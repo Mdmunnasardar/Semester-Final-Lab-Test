@@ -1,54 +1,57 @@
-
-// C++ program for implementation of Regular Falsi Method for
-// solving equations
-#include<bits/stdc++.h>
+#include <iostream>
+#include <iomanip>
+#include <cmath>
 using namespace std;
-#define MAX_ITER 1000000
 
-// An example function whose solution is determined using
-// Regular Falsi Method. The function is x^3 - x^2 + 2
+#define MAX_ITER 1000000
+#define EPSILON 0.001
+
+// Function for which we are finding root
 double func(double x)
 {
-	return x*x*x - x - 11;
+    return x*x*x - x - 11;
 }
 
-// Prints root of func(x) in interval [a, b]
-void regulaFalsi(double a, double b)
+// Regula Falsi Method with formatted output
+void regulaFalsi(double x1, double x2)
 {
-	if (func(a) * func(b) >= 0)
-	{
-		cout << "You have not assumed right a and b\n";
-		return;
-	}
+    if (func(x1) * func(x2) >= 0) {
+        cout << "You have not assumed correct x1 and x2.\n";
+        return;
+    }
 
-	double c = a; // Initialize result
-	c = (a*func(b) - b*func(a))/ (func(b) - func(a));
-    cout<<"a         b      f(a)        f(b)      c         f(c)"<<endl;
-    cout<<a<<"         "<<b<<"      "<<func(a)<<"          "<<func(b)<<"      "<<c<<"      "<<func(c)<<endl;
-	for (int i=0; i < MAX_ITER; i++)
-	{
-		// Find the point that touches x axis
+    double x3;
+    int iter = 1;
 
-		// Check if the above found point is root
-		if (fabs(func(c))<0.001)
-			break;
+    // Print header
+    cout << fixed << setprecision(4);
+    cout << "Iter\t\tx1\t\tx2\t\tx3" << endl;
 
-		// Decide the side to repeat the steps
-		else if (func(c)*func(a) < 0)
-			b = c;
-		else
-			a = c;
-        c = (a*func(b) - b*func(a))/ (func(b) - func(a));
-        cout<<a<<"   "<<b<<"   "<<func(a)<<"      "<<func(b)<<"      "<<c<<"      "<<func(c)<<endl;
-	}
-	cout << "The value of root is : " << c;
+    // Calculate initial x3
+    x3 = (x1 * func(x2) - x2 * func(x1)) / (func(x2) - func(x1));
+    cout << iter << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x3 << endl;
+
+    while (fabs(func(x3)) >= EPSILON && iter < MAX_ITER) {
+        iter++;
+
+        // Update interval based on sign of f(x3)
+        if (func(x1) * func(x3) < 0)
+            x2 = x3;
+        else
+            x1 = x3;
+
+        x3 = (x1 * func(x2) - x2 * func(x1)) / (func(x2) - func(x1));
+
+        cout << iter << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x3 << endl;
+    }
+
+    cout << "\nThe value of root is : " << x3 << endl;
+    cout << "Total iterations = " << iter << endl;
 }
 
-// Driver program to test above function
 int main()
 {
-	// Initial values assumed
-	double a =2, b = 3;
-	regulaFalsi(a, b);
-	return 0;
+    double a = 2, b = 3;
+    regulaFalsi(a, b);
+    return 0;
 }
