@@ -2,11 +2,11 @@
 #include <iomanip>
 #include <cmath>
 using namespace std;
-#define EPSILON 0.0001
+#define EPSILON 0.001
 
 // Define the function f(x)
 double f(double x) {
-   return x * x * x - 4 * x - 9;
+    return pow(x, 3) - x - 11;
 }
 
 // Secant Method implementation
@@ -14,10 +14,10 @@ void secant(double x1, double x2) {
     double x0;
     int iter = 1;
 
-      // if (f(x1) * f(x2) >= 0) {
-     //    cout << "Cannot find a root in the given interval [" << x1 << ", " << x2 << "]\n";
-    //   return;
-   // }
+    if (f(x1) * f(x2) >= 0) {
+        cout << "Cannot find a root in the given interval [" << x1 << ", " << x2 << "]\n";
+        return;
+    }
 
     cout << fixed << setprecision(4);
     cout << "Iter\t\tx0\t\tx1\t\tx2" << endl;

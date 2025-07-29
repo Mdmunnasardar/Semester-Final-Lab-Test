@@ -50,8 +50,9 @@ void regulaFalsi(double x1, double x2)
 }
 
 int main()
-{
-    double a = 2, b = 3;
-    regulaFalsi(a, b);
+{   double x1,x2;
+    cout << "Enter initial guesses x1 and x2: ";
+    cin>>x1>>x2;
+    regulaFalsi(x1, x2);
     return 0;
 }

@@ -4,7 +4,7 @@
 #define EPSILON 0.0001
 using namespace std;
 
-// Function: f(x) = x^3 - x - 11
+// Function: f(x) = x^3 - x - 9
 double func(double x)
 {
 	return x * x * x - x - 11;
@@ -43,7 +43,9 @@ void newtonRaphson(double x)
 // Main driver
 int main()
 {
-	double x0 = 2; // Initial guess
+	double x0 ;
+	cout<<"Enter the Number: ";
+	cin>>x0;
 	newtonRaphson(x0);
 	return 0;
 }

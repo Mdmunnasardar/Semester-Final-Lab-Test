@@ -3,11 +3,11 @@
 #include <cmath>
 using namespace std;
 
-#define EPSILON 0.0001
+#define EPSILON 0.001
 
 // Function definition
 double func(double x) {
-    return x * x * x - 4*x - 10;
+    return x * x * x - x - 11;
 }
 
 // Bisection Method with x1, x2, x3 format
