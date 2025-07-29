@@ -2,45 +2,41 @@
 #include <iomanip>
 #include <cmath>
 using namespace std;
+
 #define EPSILON 0.0001
 
 // Define the function f(x)
 double f(double x) {
-   return x * x * x - 4 * x - 9;
+    return x * x * x - 4 * x - 9;  // f(x) = x³ - 4x - 9
 }
 
-// Secant Method implementation
+// Secant Method implementation with x1, x2, x3 format
 void secant(double x1, double x2) {
-    double x0;
+    double x3;
     int iter = 1;
 
-      // if (f(x1) * f(x2) >= 0) {
-     //    cout << "Cannot find a root in the given interval [" << x1 << ", " << x2 << "]\n";
-    //   return;
-   // }
-
     cout << fixed << setprecision(4);
-    cout << "Iter\t\tx0\t\tx1\t\tx2" << endl;
+    cout << "Iter\t\tx1\t\tx2\t\tx3" << endl;
 
     do {
-        // Calculate x0 using secant formula
-        x0 = (x1 * f(x2) - x2 * f(x1)) / (f(x2) - f(x1));
+        if (f(x2) - f(x1) == 0.0) {
+            cout << "Math error: Division by zero.\n";
+            return;
+        }
 
-        // Print the current iteration
-        cout << iter << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x0 << endl;
+        // Secant formula
+        x3 = (x1 * f(x2) - x2 * f(x1)) / (f(x2) - f(x1));
 
-        // Check for convergence
-        if (fabs(f(x0)) < EPSILON)
-            break;
+        // Display iteration
+        cout << iter << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x3 << endl;
 
-        // Update values for next iteration
         x1 = x2;
-        x2 = x0;
+        x2 = x3;
         iter++;
-    } while (fabs(x2 - x1) >= EPSILON);
+    } while (fabs(f(x3)) >= EPSILON);
 
-    cout << "\nRoot of the given equation = " << x0 << endl;
-    cout << "Number of iterations = " << iter << endl;
+    cout << "\nThe value of root is : " << x3 << endl;
+    cout << "Total iterations = " << iter  << endl;
 }
 
 int main() {
@@ -48,7 +44,7 @@ int main() {
     cout << "Enter initial guesses x1 and x2: ";
     cin >> x1 >> x2;
 
+    secant(x1, x2);
 
-    secant(x1, x2 );
     return 0;
 }
