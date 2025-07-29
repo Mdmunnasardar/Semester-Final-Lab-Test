@@ -9,7 +9,7 @@ using namespace std;
 // Function for which we are finding root
 double func(double x)
 {
-    return x*x*x - x - 11;
+    return x*x*x - x - 10;
 }
 
 // Regula Falsi Method with formatted output

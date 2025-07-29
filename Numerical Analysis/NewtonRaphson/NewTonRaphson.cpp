@@ -7,7 +7,7 @@ using namespace std;
 // Function: f(x) = x^3 - x - 9
 double func(double x)
 {
-	return x * x * x - x - 11;
+	return x * x * x - x - 10;
 }
 
 // Derivative: f'(x) = 3x^2
