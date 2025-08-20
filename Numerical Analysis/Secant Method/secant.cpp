@@ -5,12 +5,10 @@ using namespace std;
 
 #define EPSILON 0.0001
 
-// Define the function f(x)
 double f(double x) {
-    return x * x * x - 4 * x - 9;  // f(x) = x³ - 4x - 9
+    return x * x * x - 4 * x - 9;
 }
 
-// Secant Method implementation with x1, x2, x3 format
 void secant(double x1, double x2) {
     double x3;
     int iter = 1;
@@ -23,11 +21,8 @@ void secant(double x1, double x2) {
             cout << "Math error: Division by zero.\n";
             return;
         }
-
-        // Secant formula
         x3 = (x1 * f(x2) - x2 * f(x1)) / (f(x2) - f(x1));
 
-        // Display iteration
         cout << iter << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x3 << endl;
 
         x1 = x2;

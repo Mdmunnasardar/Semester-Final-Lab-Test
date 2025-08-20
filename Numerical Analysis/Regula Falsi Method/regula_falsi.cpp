@@ -6,13 +6,10 @@ using namespace std;
 #define MAX_ITER 1000000
 #define EPSILON 0.001
 
-// Function for which we are finding root
 double func(double x)
 {
     return x*x*x - x - 10;
 }
-
-// Regula Falsi Method with formatted output
 void regulaFalsi(double x1, double x2)
 {
     if (func(x1) * func(x2) >= 0) {
@@ -21,20 +18,17 @@ void regulaFalsi(double x1, double x2)
     }
 
     double x3;
-    int iter = 1;
+    int n = 1;
 
-    // Print header
     cout << fixed << setprecision(4);
     cout << "Iter\t\tx1\t\tx2\t\tx3" << endl;
 
-    // Calculate initial x3
     x3 = (x1 * func(x2) - x2 * func(x1)) / (func(x2) - func(x1));
-    cout << iter << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x3 << endl;
+    cout << n << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x3 << endl;
 
-    while (fabs(func(x3)) >= EPSILON && iter < MAX_ITER) {
-        iter++;
+    while (fabs(func(x3)) >= EPSILON) {
+        n++;
 
-        // Update interval based on sign of f(x3)
         if (func(x1) * func(x3) < 0)
             x2 = x3;
         else
@@ -42,11 +36,11 @@ void regulaFalsi(double x1, double x2)
 
         x3 = (x1 * func(x2) - x2 * func(x1)) / (func(x2) - func(x1));
 
-        cout << iter << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x3 << endl;
+        cout << n << "\t\t" << x1 << "\t\t" << x2 << "\t\t" << x3 << endl;
     }
 
     cout << "\nThe value of root is : " << x3 << endl;
-    cout << "Total iterations = " << iter << endl;
+    cout << "Total iterations = " << n << endl;
 }
 
 int main()
