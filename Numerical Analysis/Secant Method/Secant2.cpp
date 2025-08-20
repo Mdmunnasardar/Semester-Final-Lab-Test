@@ -8,14 +8,14 @@ float f(float x) {
 
 void secant(float x1, float x2, float E) {
     float x0;
-    int n = 0;
+    int n = 1;
 
     cout << "Iter\t x1\t\t x2\t\t x0\n";
 
     if (f(x1) * f(x2) < 0) {
         do {
             x0 = (x1 * f(x2) - x2 * f(x1)) / (f(x2) - f(x1));
-            cout << n + 1 << "\t " << x1 << "\t " << x2 << "\t " << x0 << endl;
+            cout << n  << "\t " << x1 << "\t " << x2 << "\t " << x0 << endl;
 
             x1 = x2;
             x2 = x0;
