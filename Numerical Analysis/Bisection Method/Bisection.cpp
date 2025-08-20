@@ -5,12 +5,10 @@ using namespace std;
 
 #define EPSILON 0.0001
 
-// Function definition
 double func(double x) {
     return x * x * x - 4*x - 10;
 }
 
-// Bisection Method with x1, x2, x3 format
 void bisection(double x1, double x2) {
     if (func(x1) * func(x2) >= 0) {
         cout << "You have not assumed correct x1 and x2.\n";
@@ -20,7 +18,6 @@ void bisection(double x1, double x2) {
     double x3;
     int n = 1;
 
-    // Table Header
     cout << fixed << setprecision(4);
     cout << "Iter\t\tx1\t\tx2\t\tx3" << endl;
 
@@ -29,11 +26,9 @@ void bisection(double x1, double x2) {
 
         cout << n << "\t\t" << x1 << "\t\t"<< x2 << "\t\t"<< x3 << endl;
 
-        // Check if x3 is root
         if (func(x3) == 0.0)
             break;
 
-        // Narrow down the interval
         if (func(x1) * func(x3) < 0)
             x2 = x3;
         else
