@@ -43,7 +43,7 @@ void printPostorder(TreeNode* root) {
     cout << root->val << " ";     // Print root
 }
 
-// Recursive function to delete the tree and free memory
+
 //void deleteTree(TreeNode* root) {
    // if (!root) return;
    // deleteTree(root->left);   // Delete left subtree
