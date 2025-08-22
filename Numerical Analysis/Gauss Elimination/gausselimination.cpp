@@ -15,8 +15,6 @@ int main() {
             cin >> A[i][j];
         }
     }
-
-    // Forward elimination to upper triangular matrix
     for (j = 1; j <= n; j++) {
         for (i = 1; i <= n; i++) {
             if (i > j) {
@@ -28,7 +26,6 @@ int main() {
         }
     }
 
-    // Backward substitution
     x[n] = A[n][n + 1] / A[n][n];
     for (i = n - 1; i >= 1; i--) {
         sum = 0;
