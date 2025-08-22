@@ -1,13 +1,12 @@
 #include <iostream>
 #include <vector>
-#include <climits>
 using namespace std;
 
 const int INF = 100000000;
 
+// Function to compute all-pairs shortest paths
 void floydWarshall(vector<vector<int>> &dist) {
     int V = dist.size();
-
     for (int k = 0; k < V; k++) {
         for (int i = 0; i < V; i++) {
             for (int j = 0; j < V; j++) {
@@ -15,6 +14,18 @@ void floydWarshall(vector<vector<int>> &dist) {
                     dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j]);
             }
         }
+    }
+}
+
+// Function to print the distance matrix
+void printDistanceMatrix(const vector<vector<int>> &dist) {
+    int V = dist.size();
+    for (int i = 0; i < V; i++) {
+        for (int j = 0; j < V; j++) {
+            if (dist[i][j] == INF) cout << "INF ";
+            else cout << dist[i][j] << " ";
+        }
+        cout << endl;
     }
 }
 
@@ -32,16 +43,9 @@ int main() {
         }
     }
 
-    floydWarshall(dist);
-
+    floydWarshall(dist);                  // Compute shortest paths
     cout << "\nAll-pairs shortest distance matrix:\n";
-    for (int i = 0; i < V; i++) {
-        for (int j = 0; j < V; j++) {
-            if (dist[i][j] == INF) cout << "INF ";
-            else cout << dist[i][j] << " ";
-        }
-        cout << endl;
-    }
+    printDistanceMatrix(dist);            // Print the result
 
     return 0;
 }
